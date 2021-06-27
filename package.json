@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "react-native": "react-native"
   },
   "dependencies": {
     "@expo-google-fonts/nunito": "^0.1.0",
@@ -17,6 +18,8 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-svg": "^12.1.1",
+    "react-native-svg-transformer": "^0.14.3",
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
