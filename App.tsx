@@ -30,7 +30,8 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <StatusBar
         barStyle="light-content"
-        backgroundColor="#65CCB7"
+        translucent
+        backgroundColor="transparent"
       />
       <Carrousel />
     </View>

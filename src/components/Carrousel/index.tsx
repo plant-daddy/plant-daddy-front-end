@@ -1,15 +1,17 @@
 import React, { useRef, useState } from 'react';
 import {
   View,
+  ScrollView,
   Animated,
   Dimensions,
   StyleSheet,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native';
 
 import { SVGIntroOne, SVGIntroTwo, SVGIntroThree } from '../../assets/';
 import { Button, Title, Text } from '../UI';
 import { Steps } from '../Steps';
-
 
 const carrouselItems = [
   {
@@ -32,11 +34,14 @@ const carrouselItems = [
   }
 ]
 
-const MAX_WIDTH = Dimensions.get('screen').width;
+const { width: MAX_WIDTH, height } = Dimensions.get('window');
 
 export function Carrousel() {
   const carrouselAnimation = useRef(new Animated.Value(0));
+  const scroll = useRef<ScrollView>(null);
+
   const [currentItem, setCurrentItem] = useState(0);
+  const [pressed, setPressed] = useState(false);
 
   function handleNext() {
     const newCurrentItem = (currentItem < 2) ? currentItem + 1 : 0;
@@ -49,25 +54,66 @@ export function Carrousel() {
     setCurrentItem(newCurrentItem);
   }
 
+  function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
+    const xVel = e.nativeEvent.velocity?.x ?? 0;
+    const { x } = e.nativeEvent.contentOffset;
+    const direction = xVel < 0 ? 'right' : 'left';
+
+    if (direction === 'right') {
+      const page = Math.ceil(x / MAX_WIDTH);
+
+      setCurrentItem(page);
+    } else {
+      const page = Math.floor(x / MAX_WIDTH);
+
+      setCurrentItem(page);
+    }
+
+    console.log(Math.ceil(e.nativeEvent.contentOffset.x / MAX_WIDTH));
+  }
+
+  function handlePress() {
+    setCurrentItem(prev => {
+      const newCurrentItem = (prev < 2) ? prev + 1 : 0;
+
+      if (scroll && scroll.current) {
+        scroll.current.scrollTo({ x: MAX_WIDTH * newCurrentItem, animated: true });
+      }
+
+      setPressed(true);
+
+      return newCurrentItem;
+    });
+  }
+
   return (
     <View>
       <Animated.View style={[
         style.animation,
-        { transform: [{translateX: carrouselAnimation.current}] }
+        { transform: [{ translateX: carrouselAnimation.current }] }
       ]}>
-        {carrouselItems.map(item => (
-          <View key={item.id} style={style.carrousel}>
-            <item.Image width={MAX_WIDTH} height="508" />
-            <Title>{item.title}</Title>
-            <Text>{item.text}</Text>
-          </View>
-        ))}
+        <ScrollView
+          horizontal={true}
+          pagingEnabled={true}
+          scrollEventThrottle={16}
+          showsHorizontalScrollIndicator={false}
+          onScrollEndDrag={handleScroll}
+          ref={scroll}
+        >
+          {carrouselItems.map(item => (
+            <View key={item.id} style={[style.carrousel, { width: MAX_WIDTH }]}>
+              <item.Image width={MAX_WIDTH} height="508" />
+              <Title marginHorizontal={50}>{item.title}</Title>
+              <Text marginHorizontal={40}>{item.text}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </Animated.View>
 
       <View style={style.controls}>
         <Steps quantity={3} current={currentItem} />
         <Button
-          onPress={() => handleNext()}
+          onPress={() => handlePress()}
           title={currentItem < 2 ? 'Next' : 'Let\'s start'}
         />
         <Button
@@ -85,7 +131,6 @@ const style = StyleSheet.create({
     flexDirection: 'row'
   },
   carrousel: {
-    width: MAX_WIDTH,
     alignItems: 'center',
   },
   controls: {
