@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Pressable,
+  TouchableHighlight,
   Text,
   NativeSyntheticEvent,
   NativeTouchEvent,
   StyleSheet,
   Dimensions
 } from 'react-native';
-
+import { theme } from '~global';
 
 type ButtonType = 'primary' | 'link'
 
@@ -30,14 +30,16 @@ export function Button({ onPress, title, type }: ButtonProps) {
   }
 
   return (
-    <Pressable
+    <TouchableHighlight
+      activeOpacity={0.8}
       onPress={onPress}
+      underlayColor={theme.colors.mediumGreen}
       style={[
         style.button,
         style[buttonStyle]
       ]}>
       <Text style={textStyle(type)}>{title}</Text>
-    </Pressable>
+    </TouchableHighlight>
   );
 }
 
@@ -49,16 +51,17 @@ const style = StyleSheet.create({
     width: 0.85 * Dimensions.get('screen').width,
   },
   primary: {
-    backgroundColor: '#65CCB7',
+    backgroundColor: theme.colors.lightGreen,
   },
   link: {
     backgroundColor: '#fff',
     marginVertical: 10,
   },
   primaryText: {
-    color: '#f7f7f7',
+    color: theme.colors.primaryWhite,
   },
   linkText: {
-    color: '#124647',
+    color: theme.colors.darkGreen,
+    textDecorationLine: 'underline',
   }
 });

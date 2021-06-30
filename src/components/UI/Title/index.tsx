@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
+import { theme } from '~global';
 
 interface TitleProps {
   children?: React.ReactNode;
@@ -18,7 +19,8 @@ export function Title({ children, marginHorizontal }: TitleProps) {
 
 const style = StyleSheet.create({
   title: {
-    fontFamily: 'Rubik_700Bold',
+    fontFamily: theme.fonts.rubik700,
+    color: theme.colors.darkGreen,
     fontSize: 24,
     textAlign: 'center',
     margin: 10,

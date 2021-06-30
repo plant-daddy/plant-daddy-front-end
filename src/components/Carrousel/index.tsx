@@ -69,8 +69,6 @@ export function Carrousel() {
 
       setCurrentItem(page);
     }
-
-    console.log(Math.ceil(e.nativeEvent.contentOffset.x / MAX_WIDTH));
   }
 
   function handlePress() {
