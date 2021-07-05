@@ -10,7 +10,7 @@ import {
   Image,
 } from 'react-native';
 
-import { PNGIntroOne, PNGIntroTwo, PNGIntroThree } from '../../assets/';
+import { PNGIntroOne, PNGIntroTwo, PNGIntroThree } from '~assets';
 import { Button, Title, Text } from '../UI';
 import { Steps } from '../Steps';
 

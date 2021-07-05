@@ -5,7 +5,9 @@ import {
   NativeSyntheticEvent,
   NativeTouchEvent,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  StyleProp,
+  ViewStyle
 } from 'react-native';
 import { theme } from '~global';
 
@@ -14,36 +16,39 @@ type ButtonType = 'primary' | 'link'
 interface ButtonProps {
   title: string;
   type?: ButtonType;
+  style?: StyleProp<ViewStyle>;
   onPress: (e: NativeSyntheticEvent<NativeTouchEvent>) => void;
 }
 
-export function Button({ onPress, title, type }: ButtonProps) {
+export function Button({ onPress, title, type, style }: ButtonProps) {
 
   const buttonStyle = type ?? 'primary';
 
   const textStyle = (property?: ButtonType) => {
-    if (!property) return style.primaryText;
+    if (!property) return styleFromButton.primaryText;
 
-    const entry = Object.entries(style).find(([k]) => k === `${property}Text`);
+    const entry = Object.entries(styleFromButton).find(([k]) => k === `${property}Text`);
 
-    return entry ? entry[1] : style.primaryText; 
+    return entry ? entry[1] : styleFromButton.primaryText;
   }
 
   return (
     <TouchableHighlight
       activeOpacity={0.8}
       onPress={onPress}
-      underlayColor={theme.colors.mediumGreen}
+      underlayColor={theme.colors.mediumGreen + '5a'}
       style={[
-        style.button,
-        style[buttonStyle]
-      ]}>
+        styleFromButton.button,
+        styleFromButton[buttonStyle],
+        style,
+      ]}
+    >
       <Text style={textStyle(type)}>{title}</Text>
     </TouchableHighlight>
   );
 }
 
-const style = StyleSheet.create({
+const styleFromButton = StyleSheet.create({
   button: {
     alignItems: 'center',
     borderRadius: 5,

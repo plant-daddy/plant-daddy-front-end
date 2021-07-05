@@ -13,7 +13,7 @@ import {
   Nunito_600SemiBold,
 } from "@expo-google-fonts/nunito";
 
-import { Carrousel } from './src/components';
+import { Login } from '~components';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -33,7 +33,8 @@ export default function App() {
         translucent
         backgroundColor="transparent"
       />
-      <Carrousel />
+
+      <Login />
     </View>
   );
 }
