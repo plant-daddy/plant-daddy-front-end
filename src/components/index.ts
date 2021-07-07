@@ -1,2 +1,1 @@
-export { Carrousel } from './Carrousel';
-export { Steps } from './Steps';
+export { Steps } from "./Steps";

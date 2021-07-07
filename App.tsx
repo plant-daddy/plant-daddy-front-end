@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StatusBar, View, StyleSheet } from "react-native";
+import { StatusBar, View, StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
@@ -13,7 +13,7 @@ import {
   Nunito_600SemiBold,
 } from "@expo-google-fonts/nunito";
 
-import { Carrousel } from './src/components';
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -33,7 +33,7 @@ export default function App() {
         translucent
         backgroundColor="transparent"
       />
-      <Carrousel />
+      <Routes />
     </View>
   );
 }
