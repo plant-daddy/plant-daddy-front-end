@@ -8,12 +8,20 @@ import {
   NativeScrollEvent,
   Image,
 } from "react-native";
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { PNGIntroOne, PNGIntroTwo, PNGIntroThree } from "~assets";
 import { Button, Title, Text } from "~components/UI";
 import { Steps } from "~components";
 
 import { style } from "./style";
+import { RootStackParamList } from "plant-daddy/route";
+
+type IntroductionNavigationProp = StackNavigationProp<RootStackParamList, 'Introduction'>;
+
+interface IntroductionProps {
+  navigation: IntroductionNavigationProp;
+}
 
 const carrouselItems = [
   {
@@ -38,7 +46,7 @@ const carrouselItems = [
 
 const { width: MAX_WIDTH } = Dimensions.get("window");
 
-export function Carrousel() {
+export function Introduction({ navigation }: IntroductionProps) {
   const carrouselAnimation = useRef(new Animated.Value(0));
   const scroll = useRef<ScrollView>(null);
 
@@ -89,6 +97,10 @@ export function Carrousel() {
     });
   }
 
+  function handleSkip() {
+    navigation.navigate('Login');
+  }
+
   return (
     <View>
       <Animated.View
@@ -126,7 +138,7 @@ export function Carrousel() {
           />
         </View>
         <Button
-          onPress={() => alert("hello")}
+          onPress={() => handleSkip()}
           title="Skip"
           type="link"
           style={style.skip}

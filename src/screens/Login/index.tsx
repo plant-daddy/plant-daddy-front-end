@@ -1,11 +1,20 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+import { RootStackParamList } from 'plant-daddy/route';
 
 import { PNGLogin } from '~assets';
 import { Title, Input, Button } from '~components/UI';
 import { style } from './style';
 
-export function Login() {
+type LoginNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+
+interface LoginProps {
+  navigation: LoginNavigationProp;
+}
+
+export function Login({ navigation }: LoginProps) {
   return (
     <View style={style.container}>
       <Image source={PNGLogin} style={style.image} />

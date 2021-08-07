@@ -1,9 +1,11 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { Carrousel } from "../screens";
+import { RootStackParamList } from 'plant-daddy/route';
 
-const { Navigator, Screen } = createStackNavigator();
+import { Introduction, Login } from "~screens";
+
+const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 
 export function StackRoutes() {
   return (
@@ -11,7 +13,8 @@ export function StackRoutes() {
       headerMode="none"
       screenOptions={{ cardStyle: { backgroundColor: "transparent" } }}
     >
-      <Screen name="Introduction" component={Carrousel} />
+      <Screen name="Introduction" component={Introduction} />
+      <Screen name="Login" component={Login} />
     </Navigator>
   );
 }
