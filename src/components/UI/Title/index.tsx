@@ -1,28 +1,16 @@
-import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { theme } from '~global';
+import React from "react";
+import { Text } from "react-native";
+
+import { style } from "./style";
 
 interface TitleProps {
   children?: React.ReactNode;
-  marginHorizontal?: number
+  marginHorizontal?: number;
+  marginTop?: number;
 }
 
-export function Title({ children, marginHorizontal }: TitleProps) {
-  const marginStyle = { marginHorizontal };
+export function Title({ children, marginHorizontal, marginTop }: TitleProps) {
+  const marginStyle = { marginHorizontal, marginTop };
 
-  return (
-    <Text style={[style.title, marginStyle]}>
-      { children }
-    </Text>
-  );
+  return <Text style={[style.title, marginStyle]}>{children}</Text>;
 }
-
-const style = StyleSheet.create({
-  title: {
-    fontFamily: theme.fonts.rubik700,
-    color: theme.colors.darkGreen,
-    fontSize: 24,
-    textAlign: 'center',
-    margin: 10,
-  },
-})
