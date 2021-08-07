@@ -7,6 +7,7 @@ export const style = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     width: 0.85 * Dimensions.get("screen").width,
+    height: 45,
   },
   primary: {
     backgroundColor: theme.colors.lightGreen,

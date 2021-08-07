@@ -31,13 +31,13 @@ export function Button({ title, type, ...rest }: ButtonProps) {
 
   return (
     <TouchableHighlight
-      activeOpacity={0.8}
-      underlayColor={theme.colors.mediumGreen}
+      activeOpacity={type === 'link' ? 1 : 0.6}
+      underlayColor={type === 'link' ? '#fff' : theme.colors.mediumGreen}
+      {...rest}
       style={[
         btnStyle.button,
         { ...btnStyle[buttonStyle], ...(rest.style as Object) }
       ]}
-      {...rest}
     >
       <Text style={textStyle(type)}>{title}</Text>
     </TouchableHighlight>

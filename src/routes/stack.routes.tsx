@@ -12,6 +12,7 @@ export function StackRoutes() {
     <Navigator
       headerMode="none"
       screenOptions={{ cardStyle: { backgroundColor: "transparent" } }}
+      initialRouteName="Introduction"
     >
       <Screen name="Introduction" component={Introduction} />
       <Screen name="Login" component={Login} />

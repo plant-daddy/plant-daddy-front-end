@@ -11,11 +11,6 @@ export const style = StyleSheet.create({
     height: 351,
     marginLeft: 40,
   },
-  button: {
-    width: '80%',
-    height: 50,
-    justifyContent: 'center',
-  },
   loginButton: {
     marginTop: 5,
   },

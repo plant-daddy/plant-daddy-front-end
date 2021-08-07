@@ -15,6 +15,7 @@ interface LoginProps {
 }
 
 export function Login({ navigation }: LoginProps) {
+
   return (
     <View style={style.container}>
       <Image source={PNGLogin} style={style.image} />
@@ -34,13 +35,12 @@ export function Login({ navigation }: LoginProps) {
       />
       <Button
         title="Login"
-        style={[style.button, style.loginButton]}
+        style={style.loginButton}
         onPress={() => { }}
       />
       <Button
         type="link"
         title="Sign up"
-        style={style.button}
         onPress={() => { }}
       />
     </View>

@@ -11,6 +11,7 @@ export const style = StyleSheet.create({
   },
   controls: {
     justifyContent: "space-between",
+    width: MAX_WIDTH,
     marginTop: 0.03*MAX_HEIGHT,
   },
   image: {
@@ -22,7 +23,8 @@ export const style = StyleSheet.create({
   },
   skip: {
     alignSelf: "flex-end",
-    marginRight: 36,
+    marginRight: 20,
     marginTop: 15,
+    width: 60,
   },
 });

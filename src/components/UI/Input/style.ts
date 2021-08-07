@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { theme } from '~global';
 
 export const style = StyleSheet.create({
@@ -7,8 +7,8 @@ export const style = StyleSheet.create({
     borderRadius: 5,
     borderColor: theme.colors.lightGreen,
 
-    width: '80%',
-    height: 50,
+    width: 0.85*Dimensions.get('screen').width,
+    height: 45,
     marginVertical: 10,
     paddingHorizontal: 15,
   }
