@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 
-const { width: MAX_WIDTH } = Dimensions.get("window");
+const { width: MAX_WIDTH, height: MAX_HEIGHT } = Dimensions.get("window");
 
 export const style = StyleSheet.create({
   animation: {
@@ -10,13 +10,12 @@ export const style = StyleSheet.create({
     alignItems: "center",
   },
   controls: {
-    marginTop: 24,
-    height: 220,
     justifyContent: "space-between",
+    marginTop: 0.03*MAX_HEIGHT,
   },
   image: {
     width: MAX_WIDTH,
-    height: 550,
+    height: 0.65*MAX_HEIGHT,
   },
   upperControls: {
     alignItems: "center",
@@ -24,5 +23,6 @@ export const style = StyleSheet.create({
   skip: {
     alignSelf: "flex-end",
     marginRight: 36,
+    marginTop: 15,
   },
 });

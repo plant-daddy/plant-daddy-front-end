@@ -108,10 +108,10 @@ export function Carrousel() {
           {carrouselItems.map((item) => (
             <View key={item.id} style={[style.carrousel, { width: MAX_WIDTH }]}>
               <Image source={item.src} style={style.image} />
-              <Title marginHorizontal={110} marginTop={20}>
+              <Title marginHorizontal={40} marginTop={20}>
                 {item.title}
               </Title>
-              <Text marginHorizontal={70}>{item.text}</Text>
+              <Text marginHorizontal={40}>{item.text}</Text>
             </View>
           ))}
         </ScrollView>
