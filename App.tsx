@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StatusBar } from "react-native";
+import { StatusBar, View, StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
@@ -13,6 +13,8 @@ import {
   Nunito_600SemiBold,
 } from "@expo-google-fonts/nunito";
 
+import { Routes } from "./src/routes";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Rubik_300Light,
@@ -25,13 +27,13 @@ export default function App() {
   if (!fontsLoaded) return <AppLoading />;
 
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <StatusBar
         barStyle="light-content"
-        backgroundColor="transparent"
         translucent
+        backgroundColor="transparent"
       />
-      <Text>Plant Daddy</Text>
-    </>
+      <Routes />
+    </View>
   );
 }
