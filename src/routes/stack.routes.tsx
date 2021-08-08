@@ -1,17 +1,23 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { RootStackParamList } from 'plant-daddy/route';
 
-import { Carrousel } from "../screens";
+import { Introduction, Login, Signup } from '~screens';
+import { TabRoutes } from './tab.routes';
 
-const { Navigator, Screen } = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
 
 export function StackRoutes() {
   return (
     <Navigator
       headerMode="none"
       screenOptions={{ cardStyle: { backgroundColor: "transparent" } }}
+      initialRouteName="Home"
     >
-      <Screen name="Introduction" component={Carrousel} />
+      <Screen name="Introduction" component={Introduction} />
+      <Screen name="Login" component={Login} />
+      <Screen name="Signup" component={Signup} />
+      <Screen name="Home" component={TabRoutes} />
     </Navigator>
   );
 }
