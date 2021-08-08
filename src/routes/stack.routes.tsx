@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList } from 'plant-daddy/route';
 

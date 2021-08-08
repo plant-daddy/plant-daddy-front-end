@@ -9,6 +9,7 @@ declare module "plant-daddy/route" {
   export type TabParamList = {
     Plants: undefined;
     Reminders: undefined;
+    Plant: undefined;
     Profile: undefined;
     Settings: undefined;
   }
