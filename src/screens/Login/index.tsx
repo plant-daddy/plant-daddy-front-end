@@ -36,7 +36,7 @@ export function Login({ navigation }: LoginProps) {
       <Button
         title="Login"
         style={style.loginButton}
-        onPress={() => { }}
+        onPress={() => navigation.navigate('Home')}
       />
       <Button
         type="link"
