@@ -41,7 +41,7 @@ export function Login({ navigation }: LoginProps) {
       <Button
         type="link"
         title="Sign up"
-        onPress={() => { }}
+        onPress={() => navigation.navigate('Signup')}
       />
     </View>
   );
