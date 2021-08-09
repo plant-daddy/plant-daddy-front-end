@@ -1,16 +1,20 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, TextProps } from "react-native";
 
 import { style } from "./style";
 
-interface TitleProps {
+interface TitleProps extends TextProps {
   children?: React.ReactNode;
   marginHorizontal?: number;
   marginTop?: number;
 }
 
-export function Title({ children, marginHorizontal, marginTop }: TitleProps) {
+export function Title({ children, marginHorizontal, marginTop, ...rest }: TitleProps) {
   const marginStyle = { marginHorizontal, marginTop };
 
-  return <Text style={[style.title, marginStyle]}>{children}</Text>;
+  return (
+    <Text {...rest} style={[style.title, marginStyle, rest.style]}>
+      {children}
+    </Text>
+  );
 }
