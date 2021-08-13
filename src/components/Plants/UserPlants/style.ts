@@ -12,7 +12,7 @@ export const style = StyleSheet.create({
   },
 
   scrollContainer: {
-    maxHeight: 600,
+    maxHeight: 570,
     marginHorizontal: -10,
     paddingHorizontal: 10,
   },

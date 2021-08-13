@@ -27,8 +27,6 @@ export function AppPlants() {
   const pan = useRef(new Animated.Value(INITIAL_Y)).current;
 
   function handleResponderMove(event: GestureResponderEvent) {
-    event.stopPropagation();
-
     const { pageY } = event.nativeEvent;
 
     if (pageY >= MIN_Y && pageY <= MAX_Y) {
@@ -37,7 +35,6 @@ export function AppPlants() {
   }
 
   function handleResponderRelease(event: GestureResponderEvent) {
-    event.stopPropagation();
     const { pageY } = event.nativeEvent;
 
     const medium = (MIN_Y + MAX_Y) / 2;
@@ -62,6 +59,7 @@ export function AppPlants() {
         }}
       >
         <View
+          style={style.header}
           onMoveShouldSetResponder={() => true}
           onResponderTerminationRequest={() => true}
           onResponderMove={handleResponderMove}
@@ -70,7 +68,7 @@ export function AppPlants() {
           <View style={style.horizontalBar} />
           <PlantsTitle title="PLANTS" color="#fff" />
         </View>
-        <ScrollView>
+        <ScrollView style={style.plantsList}>
           <PlantsList>
             {data.map(d => (
               <PlantsListItem title={d} key={d} color={'#fff'} />

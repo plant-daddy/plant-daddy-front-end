@@ -13,7 +13,13 @@ export const style = StyleSheet.create({
     height,
     width,
 
+  },
+  header: {
     paddingHorizontal: 10,
+  },
+  plantsList: {
+    paddingHorizontal: 10,
+    maxHeight: 565,
   },
   horizontalBar: {
     backgroundColor: '#e7e7e7',
