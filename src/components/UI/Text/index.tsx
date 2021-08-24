@@ -1,15 +1,15 @@
 import React from "react";
-import { Text as NativeText } from "react-native";
+import { Text as NativeText, TextProps } from "react-native";
 
 import { style } from "./style";
 
-interface TextProps {
+interface TextType extends TextProps {
   children: React.ReactNode;
   marginHorizontal?: number;
 }
 
-export function Text({ children, marginHorizontal }: TextProps) {
+export function Text({ children, marginHorizontal, ...rest }: TextType) {
   const marginStyle = { marginHorizontal };
 
-  return <NativeText style={[style.text, marginStyle]}>{children}</NativeText>;
+  return <NativeText {...rest} style={[style.text, marginStyle, rest.style]}>{children}</NativeText>;
 }
