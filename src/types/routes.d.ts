@@ -4,7 +4,8 @@ declare module "plant-daddy/route" {
     Signup: undefined;
     Introduction: undefined;
     Home: undefined;
-  }
+    PlantDetails: undefined;
+  };
 
   export type TabParamList = {
     Plants: undefined;
@@ -12,5 +13,6 @@ declare module "plant-daddy/route" {
     Plant: undefined;
     Profile: undefined;
     Settings: undefined;
-  }
+    PlantDetails: undefined;
+  };
 }
