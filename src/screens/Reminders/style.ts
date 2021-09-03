@@ -6,12 +6,10 @@ export const style = StyleSheet.create({
     flex: 1,
     width: "100%",
     flexDirection: "column",
-    position: "absolute",
-    top: 50,
+    paddingTop: 50,
   },
 
   titleContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -26,7 +24,6 @@ export const style = StyleSheet.create({
   },
 
   labels: {
-    flex: 1,
     marginTop: 25,
     flexDirection: "row",
     paddingHorizontal: 48,
@@ -35,5 +32,6 @@ export const style = StyleSheet.create({
 
   reminders: {
     marginHorizontal: 30,
+    marginBottom: 60,
   },
 });

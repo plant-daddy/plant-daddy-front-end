@@ -11,6 +11,9 @@ import FirstRender from "../../hooks/FirstRender";
 
 import { style } from "./style";
 import { useEffect } from "react";
+import saveNotification, { ReminderProps } from "~utils/saveNotification";
+
+import reminders from "test";
 
 const remindersLabels = [
   {
@@ -29,45 +32,6 @@ const remindersLabels = [
   },
 ];
 
-const reminders = [
-  {
-    id: "1",
-    plantName: "Plant 1",
-    nextReminder: "Tomorrow at 07:30",
-    frequency: "Once every two months",
-    type: "Water",
-    checked: true,
-    img: PlantPNG,
-  },
-  {
-    id: "2",
-    plantName: "Plant 2",
-    nextReminder: "Tomorrow at 07:30",
-    frequency: "Once every two months",
-    type: "Fertilize",
-    checked: false,
-    img: PlantPNG,
-  },
-  {
-    id: "3",
-    plantName: "Plant 2",
-    nextReminder: "03/07 at 07:30",
-    frequency: "Once every two months",
-    type: "Water",
-    checked: false,
-    img: PlantPNG,
-  },
-  {
-    id: "4",
-    plantName: "Plant 1",
-    nextReminder: "Tomorrow at 07:30",
-    frequency: "Once every two months",
-    type: "Fertilize",
-    checked: true,
-    img: PlantPNG,
-  },
-];
-
 export function Reminders() {
   const firstRender = FirstRender();
 
@@ -76,6 +40,15 @@ export function Reminders() {
 
   const [reminder1, setReminder1] = useState(true);
   const [reminder2, setReminder2] = useState(true);
+
+  const [auxReminder, setAuxReminder] = useState(null);
+
+  React.useEffect(() => {
+    // let x = JSON.stringify(reminders);
+    // //console.log(x);
+    // let y = JSON.parse(x);
+    // console.log(y);
+  }, []);
 
   useEffect(() => {
     setFilteredReminders(reminders);
@@ -107,12 +80,28 @@ export function Reminders() {
   }
 
   function toggleReminder(id: string) {
-    const reminder = filteredReminders.find((x) => x.id == id);
+    const auxFilteredReminders = [...filteredReminders];
+    const reminder = auxFilteredReminders.find((item) => item.id === id);
     if (reminder) {
       reminder.checked = !reminder.checked;
-      return reminder.checked;
     }
+    const aux = [...auxFilteredReminders];
+    // console.log("PLS", aux);
+
+    setFilteredReminders(aux);
+    setAuxReminder(reminder);
+    console.log("Finished");
   }
+
+  React.useEffect(() => {
+    if (!auxReminder) return;
+    testX(auxReminder);
+  }, [auxReminder]);
+
+  const testX = async (reminder: any) => {
+    let test = await saveNotification(reminder);
+    console.log((test || 0) / 60 / 60 / 24);
+  };
 
   return (
     <View style={style.container}>
@@ -134,24 +123,25 @@ export function Reminders() {
           />
         ))}
       </View>
-
-      <FlatList
-        data={filteredReminders}
-        style={style.reminders}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <Reminder
-            title={item.plantName}
-            checked={item.checked}
-            nextReminder={item.nextReminder}
-            frequency={item.frequency}
-            type={item.type}
-            img={item.img}
-            onValueChange={() => toggleReminder(item.id)}
-          />
-        )}
-      />
+      <View style={{ flex: 1, width: "100%" }}>
+        <FlatList
+          data={filteredReminders}
+          style={style.reminders}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Reminder
+              title={item.plantName}
+              checked={item.checked}
+              nextReminder={item.nextReminder}
+              frequency={item.frequency}
+              type={item.type}
+              img={item.img}
+              onValueChange={() => toggleReminder(item.id)}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 }

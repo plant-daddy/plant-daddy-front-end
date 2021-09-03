@@ -9,3 +9,5 @@ export { default as SVGFertilize } from "./fertilize.svg";
 export { default as SVGGota } from "./gota.svg";
 
 export { default as PlantPNG } from "./plant.png";
+
+export { default as ReminderSetup } from "./notifications-set-up.png";
