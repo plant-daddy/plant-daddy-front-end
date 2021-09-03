@@ -12,4 +12,14 @@ export const theme = {
     nunito400: "Nunito_400Regular",
     nunito600: "Nunito_600SemiBold",
   },
+  labels: {
+    water: {
+      background: "#E6F1FA",
+      text: "#3D7199",
+    },
+    fertilize: {
+      background: "#FAECE6",
+      text: "#A4654A",
+    },
+  },
 };

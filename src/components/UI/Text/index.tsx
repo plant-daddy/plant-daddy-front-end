@@ -12,10 +12,7 @@ export function Text({ children, marginHorizontal, ...rest }: TextProps) {
   const marginStyle = { marginHorizontal };
 
   return (
-    <NativeText
-      {...rest}
-      style={[style.text, marginStyle, rest.style]}
-    >
+    <NativeText {...rest} style={[style.text, marginStyle, rest.style]}>
       {children}
     </NativeText>
   );

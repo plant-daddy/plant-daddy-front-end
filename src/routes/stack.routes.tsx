@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import { RootStackParamList } from "plant-daddy/route";
 
@@ -13,7 +13,7 @@ export function StackRoutes() {
     <Navigator
       headerMode="none"
       screenOptions={{ cardStyle: { backgroundColor: "transparent" } }}
-      initialRouteName="Home"
+      initialRouteName="Login"
     >
       <Screen name="Introduction" component={Introduction} />
       <Screen name="Login" component={Login} />
