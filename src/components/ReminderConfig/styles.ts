@@ -4,11 +4,9 @@ import { theme } from "~global";
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
     flexDirection: "column",
     width: "79%",
-    // borderColor: "black",
-    // borderWidth: 1,
+
     alignItems: "flex-start",
     justifyContent: "center",
     marginBottom: verticalScale(10),
@@ -18,8 +16,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     flexDirection: "column",
     alignItems: "center",
-    // borderColor: "orange",
-    // borderWidth: 1,
+
     fontSize: scale(14),
     textAlign: "center",
   },
@@ -28,17 +25,30 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // borderColor: "red",
-    // borderWidth: 1,
   },
   picker: {
-    // borderColor: "brown",
-    // borderWidth: 1,
     flex: 1,
     height: verticalScale(20),
   },
   option: {
     paddingRight: scale(20),
+    fontSize: scale(12),
+    fontFamily: theme.fonts.rubik300,
+    color: "black",
+  },
+  timePickerOtion: {
+    top: verticalScale(1),
+    flexDirection: "row",
+    margin: verticalScale(4),
+    padding: 0,
+    marginRight: scale(10),
+    width: scale(50),
+    justifyContent: "space-between",
+    alignContent: "center",
+  },
+  pickerOptionText: {
+    margin: 0,
+    padding: 0,
     fontSize: scale(12),
     fontFamily: theme.fonts.rubik300,
   },
