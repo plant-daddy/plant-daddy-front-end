@@ -8,7 +8,7 @@ import {
   NativeScrollEvent,
   Image,
 } from "react-native";
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackNavigationProp } from "@react-navigation/stack";
 
 import { PNGIntroOne, PNGIntroTwo, PNGIntroThree } from "~assets";
 import { Button, Title, Text } from "~components/UI";
@@ -17,7 +17,10 @@ import { Steps } from "~components";
 import { style } from "./style";
 import { RootStackParamList } from "plant-daddy/route";
 
-type IntroductionNavigationProp = StackNavigationProp<RootStackParamList, 'Introduction'>;
+type IntroductionNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "Introduction"
+>;
 
 interface IntroductionProps {
   navigation: IntroductionNavigationProp;
@@ -98,7 +101,7 @@ export function Introduction({ navigation }: IntroductionProps) {
   }
 
   function handleSkip() {
-    navigation.navigate('Login');
+    navigation.navigate("Home");
   }
 
   return (

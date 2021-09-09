@@ -11,6 +11,7 @@ import {
   Reminders,
   Settings,
   PlantDetails,
+  AddPlant,
 } from "~screens";
 import { theme } from "~global";
 import { style } from "./style";
@@ -24,6 +25,7 @@ const tabIcons = {
   Profile: "person",
   Settings: "settings",
   PlantDetails: "",
+  AddPlant: "",
 };
 
 export function TabRoutes() {
@@ -69,6 +71,13 @@ export function TabRoutes() {
       <Screen
         name="PlantDetails"
         component={PlantDetails}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
+      <Screen
+        name="AddPlant"
+        component={AddPlant}
         options={{
           tabBarButton: () => null,
         }}

@@ -17,3 +17,5 @@ export { default as SVGTermometro } from "./termometro.svg";
 export { default as SVGSol } from "./sol.svg";
 
 export { default as SVGBack } from "./back.svg";
+
+export { default as AddPlantSVG } from "./add-plant.svg";

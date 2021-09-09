@@ -3,7 +3,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { RootStackParamList } from "plant-daddy/route";
 
-import { Introduction, Login, Signup, PlantDetails } from "~screens";
+import { Introduction, Login, Signup, PlantDetails, AddPlant } from "~screens";
 import { TabRoutes } from "./tab.routes";
 
 const { Navigator, Screen } = createStackNavigator<RootStackParamList>();
@@ -20,6 +20,7 @@ export function StackRoutes() {
       <Screen name="Signup" component={Signup} />
       <Screen name="PlantDetails" component={PlantDetails} />
       <Screen name="Home" component={TabRoutes} />
+      <Screen name="AddPlant" component={AddPlant} />
     </Navigator>
   );
 }

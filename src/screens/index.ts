@@ -7,3 +7,4 @@ export { Reminders } from "./Reminders";
 export { Settings } from "./Settings";
 export { Signup } from "./Signup";
 export { PlantDetails } from "./PlantDetails";
+export { AddPlant } from "./AddPlant";
