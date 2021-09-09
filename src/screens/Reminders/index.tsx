@@ -104,16 +104,16 @@ export function Reminders() {
   }
 
   function toggleReminder(id: string) {
-    const auxFilteredReminders = [...filteredReminders];
-    const reminder = auxFilteredReminders.find((item) => item.id === id);
-    if (reminder) {
-      reminder.checked = !reminder.checked;
-    }
-    const aux = [...auxFilteredReminders];
+    // const auxFilteredReminders = [...filteredReminders];
+    // const reminder = auxFilteredReminders.find((item) => item.id === id);
+    // if (reminder) {
+    //   reminder.checked = !reminder.checked;
+    // }
+    // const aux = [...auxFilteredReminders];
     // console.log("PLS", aux);
 
-    setFilteredReminders(aux);
-    setAuxReminder(reminder);
+    // setFilteredReminders(aux);
+    // setAuxReminder(reminder);
     console.log("Finished");
   }
 
