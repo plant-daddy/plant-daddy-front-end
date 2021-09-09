@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, FlatList } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -13,7 +13,9 @@ import { style } from "./style";
 import { useEffect } from "react";
 import saveNotification, { ReminderProps } from "~utils/saveNotification";
 
-import reminders from "test";
+//import reminders from "test";
+import RemindersContext from "~hooks/RemindersContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const remindersLabels = [
   {
@@ -43,16 +45,34 @@ export function Reminders() {
 
   const [auxReminder, setAuxReminder] = useState(null);
 
-  React.useEffect(() => {
-    // let x = JSON.stringify(reminders);
-    // //console.log(x);
-    // let y = JSON.parse(x);
-    // console.log(y);
-  }, []);
+  const { reminders, setReminders } = useContext(RemindersContext);
 
+  const [storedReminders, setStoredReminders] = useState([]);
+
+  React.useEffect(() => {
+    //console.log(reminders);
+    const aux = async () => {
+      try {
+        //await AsyncStorage.setItem("@reminders", JSON.stringify(reminders));
+        const x = await AsyncStorage.getItem("@reminders");
+        setStoredReminders(x ? await JSON.parse(x) : []);
+        //console.log(storedReminders);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    aux();
+  }, [reminders]);
+  // React.useEffect(() => {
+  //   const auxx = async () => {
+  //     await AsyncStorage.removeItem("@reminders");
+  //   };
+  //   auxx();
+  // }, []);
   useEffect(() => {
-    setFilteredReminders(reminders);
-  }, []);
+    setFilteredReminders(storedReminders);
+    //console.log(storedReminders);
+  }, [storedReminders]);
 
   useEffect(() => {
     remindersChecked.includes(1) ? setReminder1(false) : setReminder1(true);
@@ -62,6 +82,10 @@ export function Reminders() {
     filterReminders();
   }, [remindersChecked]);
 
+  React.useEffect(() => {
+    console.log(filteredReminders);
+  }, [filteredReminders]);
+
   function filterReminders() {
     const tags: Array<string> = [];
     for (let tag of remindersChecked) {
@@ -69,7 +93,7 @@ export function Reminders() {
       else if (tag == 2) tags.push("Fertilize");
     }
     setFilteredReminders(
-      reminders.filter((reminder) => tags.indexOf(reminder.type) != -1)
+      storedReminders.filter((reminder) => tags.indexOf(reminder.type) != -1)
     );
   }
 
@@ -109,7 +133,9 @@ export function Reminders() {
         <Title>MY REMINDERS</Title>
         <Ionicons name="search" size={25} />
       </View>
-      <Text style={style.subtitle}>You have {reminders.length} reminders!</Text>
+      <Text style={style.subtitle}>
+        You have {storedReminders.length} reminders!
+      </Text>
 
       <View style={style.labels}>
         {remindersLabels.map((label) => (
@@ -124,23 +150,27 @@ export function Reminders() {
         ))}
       </View>
       <View style={{ flex: 1, width: "100%" }}>
-        <FlatList
-          data={filteredReminders}
-          style={style.reminders}
-          keyExtractor={(item) => item.id}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <Reminder
-              title={item.plantName}
-              checked={item.checked}
-              nextReminder={item.nextReminder}
-              frequency={item.frequency}
-              type={item.type}
-              img={item.img}
-              onValueChange={() => toggleReminder(item.id)}
+        {filteredReminders.length >= 1 ? (
+          Object.keys(filteredReminders[0]).length >= 1 ? (
+            <FlatList
+              data={filteredReminders}
+              style={style.reminders}
+              keyExtractor={(item) => item.id}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <Reminder
+                  title={item.plantName}
+                  checked={item.checked}
+                  nextReminder={item.nextReminder}
+                  frequency={item.frequency}
+                  type={item.type}
+                  img={item.img}
+                  onValueChange={() => toggleReminder(item.id)}
+                />
+              )}
             />
-          )}
-        />
+          ) : null
+        ) : null}
       </View>
     </View>
   );

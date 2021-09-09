@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: "90%",
     height: "40%",
-    marginVertical: verticalScale(15),
+    // marginTop: verticalScale(0),
+    marginBottom: verticalScale(10),
   },
   image: {
     width: "100%",
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: scale(23.5),
+    marginBottom: verticalScale(5),
     // borderColor: "black",
     // borderWidth: 1,
   },

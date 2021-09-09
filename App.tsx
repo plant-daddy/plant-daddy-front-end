@@ -15,6 +15,8 @@ import {
 
 import { Routes } from "./src/routes";
 
+import { RemindersProvider } from "~hooks/RemindersContext";
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Rubik_300Light,
@@ -28,12 +30,14 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar
-        barStyle="light-content"
-        translucent
-        backgroundColor="transparent"
-      />
-      <Routes />
+      <RemindersProvider>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor="transparent"
+        />
+        <Routes />
+      </RemindersProvider>
     </View>
   );
 }
